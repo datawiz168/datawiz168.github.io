@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB &middot; My awesome website</title>
+  <meta name="title" content="MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB &middot; My awesome website" />
+  
+  
+  
+  
+  
+  <link rel="canonical" href="https://grokdb.io/post/first-post/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.00dd8b9350ecc82ac2af1f4674a9aad6c9a42e761652b3143d532e4b352bd5ca4750a9e040a76fd03e5d53ef1eb025fa8d60f7c673632f7ca0683ece7f990542.css"
+    integrity="sha512-AN2Lk1DsyCrCrx9GdKmq1smkLnYWUrMUPVMuSzUr1cpHUKngQKdv0D5dU&#43;8esCX6jWD3xnNjL3ygaD7Of5kFQg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.b36dda9ec4ec11e967fd341e7d57b8c484ac7a39f8f329f7bcf7ce4812569de8607db866a086d4789956ac0b74967e251c9a566d94d469dd28b8787fed4f46f5.js"
+    integrity="sha512-s23ansTsEeln/TQefVe4xISsejn48yn3vPfOSBJWnehgfbhmoIbUeJlWrAt0ln4lHJpWbZTUad0ouHh/7U9G9Q==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB" />
+<meta property="og:description" content="MySQL源码编译和调试指南 此指南提供一系列详细的步骤，帮助您从源码编译MySQL服务器，并使用GDB对其进行调试。整个过程包括环境准备、源码获取、编译、调试前的准备、使用GDB调试，以及一些调试技巧和建议。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://grokdb.io/post/first-post/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-01T21:36:44+08:00" />
+<meta property="article:modified_time" content="2024-04-01T21:36:44+08:00" />
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB"/>
+<meta name="twitter:description" content="MySQL源码编译和调试指南 此指南提供一系列详细的步骤，帮助您从源码编译MySQL服务器，并使用GDB对其进行调试。整个过程包括环境准备、源码获取、编译、调试前的准备、使用GDB调试，以及一些调试技巧和建议。"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB",
+    "headline": "MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB",
+    
+    "abstract": "MySQL源码编译和调试指南 此指南提供一系列详细的步骤，帮助您从源码编译MySQL服务器，并使用GDB对其进行调试。整个过程包括环境准备、源码获取、编译、调试前的准备、使用GDB调试，以及一些调试技巧和建议。",
+    "inLanguage": "en",
+    "url" : "https:\/\/grokdb.io\/post\/first-post\/",
+    "author" : {
+      "@type": "Person",
+      "name": "GrokDb"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-04-01T21:36:44\u002b08:00",
+    "datePublished": "2024-04-01T21:36:44\u002b08:00",
+    
+    "dateModified": "2024-04-01T21:36:44\u002b08:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "336"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="GrokDb" />
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">My awesome website</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-04-01 21:36:44 &#43;0800 CST">1 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>336 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+      
+      
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      GrokDb
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">A little bit about me</div>
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+  
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>MySQL源码编译和调试指南
+此指南提供一系列详细的步骤，帮助您从源码编译MySQL服务器，并使用GDB对其进行调试。整个过程包括环境准备、源码获取、编译、调试前的准备、使用GDB调试，以及一些调试技巧和建议。</p>
+
+
+<h2 class="relative group">调试MySQL源码的完整指南 
+    <div id="%E8%B0%83%E8%AF%95mysql%E6%BA%90%E7%A0%81%E7%9A%84%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%B0%83%E8%AF%95mysql%E6%BA%90%E7%A0%81%E7%9A%84%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">一、环境准备 
+    <div id="%E4%B8%80%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%80%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">1. 更新系统软件包列表 
+    <div id="1-%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%88%97%E8%A1%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%88%97%E8%A1%A8" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt update
+</span></span></code></pre></div>
+
+<h4 class="relative group">2. 安装编译所需的基本工具和库 
+    <div id="2-%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91%E6%89%80%E9%9C%80%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%92%8C%E5%BA%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91%E6%89%80%E9%9C%80%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%92%8C%E5%BA%93" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install build-essential cmake libncurses5-dev libssl-dev bison libboost-all-dev
+</span></span></code></pre></div>
+
+<h4 class="relative group">3. 安装其他可能需要的库和工具 
+    <div id="3-%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E5%BA%93%E5%92%8C%E5%B7%A5%E5%85%B7" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E5%BA%93%E5%92%8C%E5%B7%A5%E5%85%B7" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install libpthread-stubs0-dev libaio-dev libprotobuf-dev protobuf-compiler libnuma-dev libmecab2 mecab mecab-ipadic git
+</span></span></code></pre></div>
+
+<h4 class="relative group">4. 验证GCC版本(需要8.0以上) 
+    <div id="4-%E9%AA%8C%E8%AF%81gcc%E7%89%88%E6%9C%AC%E9%9C%80%E8%A6%8180%E4%BB%A5%E4%B8%8A" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%E9%AA%8C%E8%AF%81gcc%E7%89%88%E6%9C%AC%E9%9C%80%E8%A6%8180%E4%BB%A5%E4%B8%8A" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gcc --version
+</span></span></code></pre></div><p>如果GCC版本低于8.0,可以使用以下命令安装GCC 8:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install gcc-8 g++-8
+</span></span><span class="line"><span class="cl">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 <span class="m">80</span> --slave /usr/bin/g++ g++ /usr/bin/g++-8
+</span></span></code></pre></div>
+
+<h4 class="relative group">5. 验证CMake版本(需要3.5以上) 
+    <div id="5-%E9%AA%8C%E8%AF%81cmake%E7%89%88%E6%9C%AC%E9%9C%80%E8%A6%8135%E4%BB%A5%E4%B8%8A" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#5-%E9%AA%8C%E8%AF%81cmake%E7%89%88%E6%9C%AC%E9%9C%80%E8%A6%8135%E4%BB%A5%E4%B8%8A" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cmake --version
+</span></span></code></pre></div><p>如果CMake版本低于3.5,可以使用以下命令安装CMake 3.5:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://github.com/Kitware/CMake/releases/download/v3.5.2/cmake-3.5.2.tar.gz
+</span></span><span class="line"><span class="cl">tar -xvf cmake-3.5.2.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> cmake-3.5.2
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">sudo make install
+</span></span></code></pre></div><p>如果在安装CMake 3.5时遇到问题,可以参考以下步骤:</p>
+<p>a. 完成CMake 3.5.2的构建和安装:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> cmake-3.5.2
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">sudo make install
+</span></span></code></pre></div><p>b. 检查CMake 3.5.2是否已经正确安装:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/usr/local/bin/cmake --version
+</span></span></code></pre></div><p>c. 如果步骤b正常,将<code>/usr/local/bin</code>添加到<code>PATH</code>环境变量的最前面:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:<span class="nv">$PATH</span>
+</span></span></code></pre></div><p>可以将这一行添加到<code>.bashrc</code>文件的末尾,以使更改永久生效。</p>
+<p>d. 再次尝试<code>cmake --version</code>,应该会输出CMake 3.5.2的版本信息。</p>
+
+
+<h4 class="relative group">6. 安装pkg-config 
+    <div id="6-%E5%AE%89%E8%A3%85pkg-config" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#6-%E5%AE%89%E8%A3%85pkg-config" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install pkg-config
+</span></span></code></pre></div>
+
+<h4 class="relative group">7. 如果需要LDAP认证插件,安装LDAP开发库 
+    <div id="7-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81ldap%E8%AE%A4%E8%AF%81%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85ldap%E5%BC%80%E5%8F%91%E5%BA%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#7-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81ldap%E8%AE%A4%E8%AF%81%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85ldap%E5%BC%80%E5%8F%91%E5%BA%93" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install libldap2-dev
+</span></span></code></pre></div>
+
+<h4 class="relative group">8. 如果需要FIDO认证插件,安装libudev开发库 
+    <div id="8-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81fido%E8%AE%A4%E8%AF%81%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85libudev%E5%BC%80%E5%8F%91%E5%BA%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#8-%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81fido%E8%AE%A4%E8%AF%81%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85libudev%E5%BC%80%E5%8F%91%E5%BA%93" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install libudev-dev
+</span></span></code></pre></div>
+
+<h3 class="relative group">二、源码获取 
+    <div id="%E4%BA%8C%E6%BA%90%E7%A0%81%E8%8E%B7%E5%8F%96" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BA%8C%E6%BA%90%E7%A0%81%E8%8E%B7%E5%8F%96" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">1. 安装Git 
+    <div id="1-%E5%AE%89%E8%A3%85git" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%E5%AE%89%E8%A3%85git" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install git
+</span></span></code></pre></div>
+
+<h4 class="relative group">2. 从GitHub克隆MySQL 8.0.33的源码 
+    <div id="2-%E4%BB%8Egithub%E5%85%8B%E9%9A%86mysql-8033%E7%9A%84%E6%BA%90%E7%A0%81" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E4%BB%8Egithub%E5%85%8B%E9%9A%86mysql-8033%E7%9A%84%E6%BA%90%E7%A0%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone --depth <span class="m">1</span> --branch mysql-8.0.33 https://github.com/mysql/mysql-server.git
+</span></span></code></pre></div>
+
+<h4 class="relative group">3. 进入源码目录 
+    <div id="3-%E8%BF%9B%E5%85%A5%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E8%BF%9B%E5%85%A5%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> mysql-server
+</span></span></code></pre></div>
+
+<h3 class="relative group">三、编译源码 
+    <div id="%E4%B8%89%E7%BC%96%E8%AF%91%E6%BA%90%E7%A0%81" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%89%E7%BC%96%E8%AF%91%E6%BA%90%E7%A0%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">1. 在源码目录下,创建一个单独的编译目录 
+    <div id="1-%E5%9C%A8%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%95%E7%8B%AC%E7%9A%84%E7%BC%96%E8%AF%91%E7%9B%AE%E5%BD%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%E5%9C%A8%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%95%E7%8B%AC%E7%9A%84%E7%BC%96%E8%AF%91%E7%9B%AE%E5%BD%95" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir build
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> build
+</span></span></code></pre></div>
+
+<h4 class="relative group">2. 下载Boost库 
+    <div id="2-%E4%B8%8B%E8%BD%BDboost%E5%BA%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E4%B8%8B%E8%BD%BDboost%E5%BA%93" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2
+</span></span></code></pre></div>
+
+<h4 class="relative group">3. 将下载的<code>boost_1_77_0.tar.bz2</code>文件移动到<code>/home/grok/mysql-server/build/boost</code>目录 
+    <div id="3-%E5%B0%86%E4%B8%8B%E8%BD%BD%E7%9A%84boost_1_77_0tarbz2%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8%E5%88%B0homegrokmysql-serverbuildboost%E7%9B%AE%E5%BD%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E5%B0%86%E4%B8%8B%E8%BD%BD%E7%9A%84boost_1_77_0tarbz2%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8%E5%88%B0homegrokmysql-serverbuildboost%E7%9B%AE%E5%BD%95" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir boost
+</span></span><span class="line"><span class="cl">mv boost_1_77_0.tar.bz2 ./boost
+</span></span></code></pre></div>
+
+<h4 class="relative group">4. 使用CMake生成Makefile 
+    <div id="4-%E4%BD%BF%E7%94%A8cmake%E7%94%9F%E6%88%90makefile" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%E4%BD%BF%E7%94%A8cmake%E7%94%9F%E6%88%90makefile" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cmake .. -DDOWNLOAD_BOOST<span class="o">=</span><span class="m">1</span> -DWITH_BOOST<span class="o">=</span>./boost -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DWITH_DEBUG<span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></div><p>如果您的系统已经安装了Boost库,可以去掉<code>-DDOWNLOAD_BOOST</code>和<code>-DWITH_BOOST</code>选项。</p>
+
+
+<h4 class="relative group">5. 编译源码 
+    <div id="5-%E7%BC%96%E8%AF%91%E6%BA%90%E7%A0%81" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#5-%E7%BC%96%E8%AF%91%E6%BA%90%E7%A0%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make -j<span class="k">$(</span>nproc<span class="k">)</span>
+</span></span></code></pre></div><p>编译过程可能会花费较长时间,请耐心等待。如果编译出错,请仔细查看错误信息,解决相应的依赖问题或编译选项问题。</p>
+
+
+<h4 class="relative group">6. 编译完成后,可以在<code>build/bin</code>目录下找到编译出的<code>mysqld</code>可执行文件 
+    <div id="6-%E7%BC%96%E8%AF%91%E5%AE%8C%E6%88%90%E5%90%8E%E5%8F%AF%E4%BB%A5%E5%9C%A8buildbin%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%BE%E5%88%B0%E7%BC%96%E8%AF%91%E5%87%BA%E7%9A%84mysqld%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#6-%E7%BC%96%E8%AF%91%E5%AE%8C%E6%88%90%E5%90%8E%E5%8F%AF%E4%BB%A5%E5%9C%A8buildbin%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%89%BE%E5%88%B0%E7%BC%96%E8%AF%91%E5%87%BA%E7%9A%84mysqld%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls ./bin/mysqld
+</span></span></code></pre></div>
+
+<h3 class="relative group">四、调试前的准备 
+    <div id="%E5%9B%9B%E8%B0%83%E8%AF%95%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9B%9B%E8%B0%83%E8%AF%95%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">1. 初始化数据目录 
+    <div id="1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./bin/mysqld --initialize-insecure --datadir<span class="o">=</span>./data
+</span></span></code></pre></div><p>这里使用<code>--initialize-insecure</code>选项进行初始化,不设置root密码。</p>
+
+
+<h4 class="relative group">2. 启动mysqld服务器,并指定Unix域套接字文件的路径 
+    <div id="2-%E5%90%AF%E5%8A%A8mysqld%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E6%8C%87%E5%AE%9Aunix%E5%9F%9F%E5%A5%97%E6%8E%A5%E5%AD%97%E6%96%87%E4%BB%B6%E7%9A%84%E8%B7%AF%E5%BE%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E5%90%AF%E5%8A%A8mysqld%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E6%8C%87%E5%AE%9Aunix%E5%9F%9F%E5%A5%97%E6%8E%A5%E5%AD%97%E6%96%87%E4%BB%B6%E7%9A%84%E8%B7%AF%E5%BE%84" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./bin/mysqld --datadir<span class="o">=</span>./data --socket<span class="o">=</span>./data/mysql.sock
+</span></span></code></pre></div><p>这样,MySQL服务器将使用<code>./data/mysql.sock</code>作为Unix域套接字文件。</p>
+
+
+<h4 class="relative group">3. 打开另一个终端,使用MySQL客户端连接到mysqld服务器,指定相同的套接字文件路径 
+    <div id="3-%E6%89%93%E5%BC%80%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8mysql%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E5%88%B0mysqld%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8C%87%E5%AE%9A%E7%9B%B8%E5%90%8C%E7%9A%84%E5%A5%97%E6%8E%A5%E5%AD%97%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E6%89%93%E5%BC%80%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8mysql%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E5%88%B0mysqld%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8C%87%E5%AE%9A%E7%9B%B8%E5%90%8C%E7%9A%84%E5%A5%97%E6%8E%A5%E5%AD%97%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./bin/mysql -uroot -S./data/mysql.sock
+</span></span></code></pre></div>
+
+<h4 class="relative group">4. 在MySQL客户端中,创建一个测试数据库和表 
+    <div id="4-%E5%9C%A8mysql%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E8%A1%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%E5%9C%A8mysql%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E8%A1%A8" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">USE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;aaa&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bbb&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div>
+
+<h4 class="relative group">5. 正确地关闭MySQL服务器 
+    <div id="5-%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%85%B3%E9%97%ADmysql%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#5-%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%85%B3%E9%97%ADmysql%E6%9C%8D%E5%8A%A1%E5%99%A8" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>您可以在MySQL客户端中执行<code>SHUTDOWN</code>命令:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SHUTDOWN</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>或者在另一个终端中使用<code>mysqladmin</code>工具:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./bin/mysqladmin -uroot -S./data/mysql.sock shutdown
+</span></span></code></pre></div><p>如果以上方法无法关闭服务器,您可以在服务器进程所在的终端中按下<code>Ctrl+\</code>(反斜杠),或者使用<code>kill</code>命令发送<code>SIGTERM</code>或<code>SIGKILL</code>信号。但是这些方法可能会导致数据损坏或不一致,只应在其他方法失败时使用。</p>
+
+
+<h3 class="relative group">五、使用GDB调试MySQL源码 
+    <div id="%E4%BA%94%E4%BD%BF%E7%94%A8gdb%E8%B0%83%E8%AF%95mysql%E6%BA%90%E7%A0%81" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BA%94%E4%BD%BF%E7%94%A8gdb%E8%B0%83%E8%AF%95mysql%E6%BA%90%E7%A0%81" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+
+
+<h4 class="relative group">1. 在MySQL源码的<code>build</code>目录下,使用GDB启动mysqld进程(建议使用绝对路径，下面根据实际情况修改) 
+    <div id="1-%E5%9C%A8mysql%E6%BA%90%E7%A0%81%E7%9A%84build%E7%9B%AE%E5%BD%95%E4%B8%8B%E4%BD%BF%E7%94%A8gdb%E5%90%AF%E5%8A%A8mysqld%E8%BF%9B%E7%A8%8B%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8B%E9%9D%A2%E6%A0%B9%E6%8D%AE%E5%AE%9E%E9%99%85%E6%83%85%E5%86%B5%E4%BF%AE%E6%94%B9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%E5%9C%A8mysql%E6%BA%90%E7%A0%81%E7%9A%84build%E7%9B%AE%E5%BD%95%E4%B8%8B%E4%BD%BF%E7%94%A8gdb%E5%90%AF%E5%8A%A8mysqld%E8%BF%9B%E7%A8%8B%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8B%E9%9D%A2%E6%A0%B9%E6%8D%AE%E5%AE%9E%E9%99%85%E6%83%85%E5%86%B5%E4%BF%AE%E6%94%B9" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gdb --args ./bin/mysqld --datadir<span class="o">=</span>/home/grok/mysql-server/build/data/ --socket<span class="o">=</span>/home/grok/mysql-server/build/data/mysql.sock
+</span></span></code></pre></div>
+
+<h4 class="relative group">2. 在GDB中设置断点 
+    <div id="2-%E5%9C%A8gdb%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E5%9C%A8gdb%E4%B8%AD%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>为避免初始连接问题,建议设置断点于某个查询执行或特定逻辑处理的代码段。例如,如果想要在执行具体的SQL命令时停下来看看发生了什么,可以在处理该SQL命令的函数处设置断点。找到该函数的准确位置需要您根据当前的MySQL源码进行查找。例如:</p>
+<pre tabindex="0"><code>(gdb) break sql_parse.cc:执行SQL命令的函数
+</code></pre>
+
+<h4 class="relative group">3. 使用<code>run</code>命令运行mysqld进程 
+    <div id="3-%E4%BD%BF%E7%94%A8run%E5%91%BD%E4%BB%A4%E8%BF%90%E8%A1%8Cmysqld%E8%BF%9B%E7%A8%8B" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%E4%BD%BF%E7%94%A8run%E5%91%BD%E4%BB%A4%E8%BF%90%E8%A1%8Cmysqld%E8%BF%9B%E7%A8%8B" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>(gdb) run
+</code></pre>
+
+<h4 class="relative group">4. 打开另一个终端,使用MySQL客户端连接到mysqld服务器,并执行会触发断点的SQL语句 
+    <div id="4-%E6%89%93%E5%BC%80%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8mysql%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E5%88%B0mysqld%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E6%89%A7%E8%A1%8C%E4%BC%9A%E8%A7%A6%E5%8F%91%E6%96%AD%E7%82%B9%E7%9A%84sql%E8%AF%AD%E5%8F%A5" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-%E6%89%93%E5%BC%80%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8mysql%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E5%88%B0mysqld%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E6%89%A7%E8%A1%8C%E4%BC%9A%E8%A7%A6%E5%8F%91%E6%96%AD%E7%82%B9%E7%9A%84sql%E8%AF%AD%E5%8F%A5" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./bin/mysql -uroot -S/home/grok/mysql-server/build/data/mysql.sock
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">USE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div>
+
+<h4 class="relative group">5. 切换回GDB所在的终端,此时GDB会停在断点处。您可以使用GDB命令进行调试: 
+    <div id="5-%E5%88%87%E6%8D%A2%E5%9B%9Egdb%E6%89%80%E5%9C%A8%E7%9A%84%E7%BB%88%E7%AB%AF%E6%AD%A4%E6%97%B6gdb%E4%BC%9A%E5%81%9C%E5%9C%A8%E6%96%AD%E7%82%B9%E5%A4%84%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8gdb%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#5-%E5%88%87%E6%8D%A2%E5%9B%9Egdb%E6%89%80%E5%9C%A8%E7%9A%84%E7%BB%88%E7%AB%AF%E6%AD%A4%E6%97%B6gdb%E4%BC%9A%E5%81%9C%E5%9C%A8%E6%96%AD%E7%82%B9%E5%A4%84%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8gdb%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ul>
+<li><code>n</code>(next): 单步执行,不进入函数。</li>
+<li><code>s</code>(step): 单步执行,进入函数。</li>
+<li><code>p</code>(print): 打印变量值,如<code>p thd-&gt;query().str</code>。</li>
+<li><code>bt</code>(backtrace): 查看调用栈。</li>
+<li><code>up</code>/<code>down</code>: 在调用栈中向上或向下移动。</li>
+<li><code>f</code>(frame): 切换到指定的栈帧。</li>
+<li><code>c</code>(continue): 继续执行,直到下一个断点。</li>
+</ul>
+
+
+<h4 class="relative group">6. 如果要在调试过程中动态地设置或删除断点,可以使用以下命令: 
+    <div id="6-%E5%A6%82%E6%9E%9C%E8%A6%81%E5%9C%A8%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8A%A8%E6%80%81%E5%9C%B0%E8%AE%BE%E7%BD%AE%E6%88%96%E5%88%A0%E9%99%A4%E6%96%AD%E7%82%B9%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#6-%E5%A6%82%E6%9E%9C%E8%A6%81%E5%9C%A8%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8A%A8%E6%80%81%E5%9C%B0%E8%AE%BE%E7%BD%AE%E6%88%96%E5%88%A0%E9%99%A4%E6%96%AD%E7%82%B9%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>(gdb) break 文件名:行号
+(gdb) break 文件名:函数名
+(gdb) info breakpoints
+(gdb) delete 断点编号
+</code></pre>
+
+<h4 class="relative group">7. 调试完成后,使用<code>quit</code>命令退出GDB 
+    <div id="7-%E8%B0%83%E8%AF%95%E5%AE%8C%E6%88%90%E5%90%8E%E4%BD%BF%E7%94%A8quit%E5%91%BD%E4%BB%A4%E9%80%80%E5%87%BAgdb" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#7-%E8%B0%83%E8%AF%95%E5%AE%8C%E6%88%90%E5%90%8E%E4%BD%BF%E7%94%A8quit%E5%91%BD%E4%BB%A4%E9%80%80%E5%87%BAgdb" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>(gdb) quit
+</code></pre>
+
+<h3 class="relative group">六、其他调试技巧和建议 
+    <div id="%E5%85%AD%E5%85%B6%E4%BB%96%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%92%8C%E5%BB%BA%E8%AE%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%AD%E5%85%B6%E4%BB%96%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E5%92%8C%E5%BB%BA%E8%AE%AE" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ol>
+<li>
+<p>在调试之前,先要对MySQL的整体架构和执行流程有一个大致的了解。可以参考MySQL官方文档、书籍、博客等资料。</p>
+</li>
+<li>
+<p>从一些核心模块入手,如SQL解析、查询优化、执行器、存储引擎等,逐步深入理解MySQL的内部原理。</p>
+</li>
+<li>
+<p>多使用断点和单步执行,仔细观察变量的值和调用栈的变化,理解代码的执行过程。</p>
+</li>
+<li>
+<p>善用GDB的条件断点和观察点功能,可以在特定条件下触发断点,或者在变量值发生变化时停下来。</p>
+</li>
+<li>
+<p>使用GDB的脚本功能,可以自动化一些调试操作,提高效率。</p>
+</li>
+<li>
+<p>在调试过程中,可以适当添加一些日志打印语句,跟踪关键变量和执行路径。</p>
+</li>
+<li>
+<p>调试过程中遇到任何问题,可以查阅GDB手册或在网上搜索解决方案。
+希望这份指南能够为您的MySQL源码探索之旅提供有力的指导和帮助。</p>
+</li>
+</ol>
+
+        </div>
+                
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_post\/first-post.md"
+        var oid_likes = "likes_post\/first-post.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.b06a29d42a4ed16787978e2eee1e8c797b7698db2bc14ccee78f5c80ac566fc996190a73ad80a5e987558474b20b96fa38f7d85b405f165ff72b7b163c5ad11b.js" integrity="sha512-sGop1CpO0WeHl44u7h6MeXt2mNsrwUzO549cgKxWb8mWGQpzrYCl6YdVhHSyC5b6OPfYW0BfFl/3K3sWPFrRGw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      GrokDb
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://grokdb.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>
