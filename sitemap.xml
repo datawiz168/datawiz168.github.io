@@ -4,18 +4,24 @@
 
   <url>
     <loc>https://grokdb.io/</loc>
-    <lastmod>2024-04-01T21:36:44+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://grokdb.io/post/first-post/</loc>
-    <lastmod>2024-04-01T21:36:44+08:00</lastmod>
+    <lastmod>2024-04-07T02:17:12+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://grokdb.io/post/</loc>
+    <lastmod>2024-04-07T02:17:12+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://grokdb.io/post/second-post/</loc>
+    <lastmod>2024-04-07T02:17:12+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://grokdb.io/post/first-post/</loc>
     <lastmod>2024-04-01T21:36:44+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
