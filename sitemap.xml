@@ -3,25 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://grokdb.io/</loc>
+    <lastmod>2024-04-08T03:04:14+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://grokdb.io/post/</loc>
+    <lastmod>2024-04-08T03:04:14+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://grokdb.io/post/third-post/</loc>
+    <lastmod>2024-04-08T03:04:14+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://grokdb.io/post/second-post/</loc>
     <lastmod>2024-04-07T02:17:12+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2024-04-07T02:17:12+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/post/second-post/</loc>
-    <lastmod>2024-04-07T02:17:12+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/post/first-post/</loc>
+    <loc>https://grokdb.io/post/first-post/</loc>
     <lastmod>2024-04-01T21:36:44+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
