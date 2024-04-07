@@ -95,7 +95,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "909"
+    "wordCount": "911"
   }]
   </script>
 
@@ -465,7 +465,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-04-07 02:17:12 &#43;0800 CST">7 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>909 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+  <time datetime="2024-04-07 02:17:12 &#43;0800 CST">7 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>911 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
   
 
   
@@ -639,23 +639,25 @@
 $$ P = \frac{n_a - n}{n_t - n} $$ (1)</p>
 <p>其中：</p>
 <ul>
-<li>$n_a$ 是消息空间中将被接受为给定集合成员的消息数量</li>
-<li>$n$ 是给定集合中的消息数量</li>
-<li>$n_t$ 是消息空间中不同消息的总数</li>
+<li>$$n_a$$ 是消息空间中将被接受为给定集合成员的消息数量</li>
+<li>$$n$$ 是给定集合中的消息数量</li>
+<li>$$n_t$$ 是消息空间中不同消息的总数</li>
 </ul>
 <p><strong>空间。</strong> 基本空间因素是哈希区域中的位数 N。通过分析更改 N 值对时间因素的影响，稍后将引入一个合适的标准化空间因素度量。使用此标准化度量将把由于给定消息集中消息数量和允许的错误分数而对时间产生的影响与由于哈希区域大小而对时间产生的影响分开。这种效果分离将允许更清晰地呈现空间/时间权衡。</p>
 <p><strong>时间。</strong> 时间因素是将消息拒绝为给定集合成员所需的平均时间。在测量这个因素时，使用的单位是在哈希区域中计算单个位地址、访问寻址位和对位内容进行适当测试所需的时间。</p>
 <p>对于传统的哈希编码方法，测试是比较哈希区域中的寻址位与消息中相应的位。对于方法 1，测试是比较哈希区域位与从消息派生的相应代码位。对于方法 2，测试只是简单地确定哈希区域位的内容；例如，它是 1 吗？对于以下分析，假设三个方法和哈希区域中的所有位的时间单位相同<sup>1</sup>。</p>
 <p>以这些单位测量的時間因素称为归一化时间度量，并且将针对此因素分析空间/时间权衡。归一化时间度量为：</p>
-<p>$$ T = mean(t_i) $$ (2)</p>
+<p>$$
+T = \text{mean} \left( t_i \right)_{m_i \in a}
+$$</p>
+<p>(2)</p>
 <p>其中：</p>
 <ul>
-<li>$m_i \in a$</li>
 <li>M 是给定的消息集</li>
 <li>a 是被识别（正确或错误）为 M 成员的消息集</li>
 <li>g 是被识别为非 M 成员的消息集</li>
-<li>$m_i$ 是第 i 条消息</li>
-<li>$t_i$ 是拒绝第 i 条消息所需的时间</li>
+<li>$$m_i$$ 是第 i 条消息</li>
+<li>$$t_i$$ 是拒绝第 i 条消息所需的时间</li>
 </ul>
 
 
@@ -730,7 +732,7 @@ $$ P = \frac{n_a - n}{n_t - n} $$ (1)</p>
 <p>$$ = -n \cdot (\frac{d}{N&quot;}) \cdot log_2e $$</p>
 <p>因此</p>
 <p>$$ N&quot; = \frac{n \cdot (-log_2P&quot;) \cdot log_2e}{log_2\Phi&quot;} $$ (19)</p>
-<p>我们现在推导出归一化时间度量 T&quot; 的关系。当测试的前 x - 1 位为 1，而测试的第 x 位为 0 时，将测试 x 位。这发生的概率为 $ \Phi&quot; \cdot (1 - \Phi&quot;)^{x-1}$。对于 $P&quot; &laquo; 1$ 和 $d &raquo; 1$，T&quot; 的近似值（每个被拒绝的测试消息的测试位数的期望值）为</p>
+<p>我们现在推导出归一化时间度量 T&quot; 的关系。当测试的前 x - 1 位为 1，而测试的第 x 位为 0 时，将测试 x 位。这发生的概率为 $$ \Phi&quot; \cdot (1 - \Phi&quot;)^{x-1}$$。对于 $$P&quot; &laquo; 1$ 和 $d &raquo; 1$$，T&quot; 的近似值（每个被拒绝的测试消息的测试位数的期望值）为</p>
 <p>$$ T&quot; = \sum_{x=1}^{\infty} x \cdot \Phi&quot; \cdot (1 - \Phi&quot;)^{x-1} = \frac{1}{\Phi&quot;} $$ (20)</p>
 <p>因此</p>
 <p>$$ N&quot; = \frac{n \cdot (-log_2P&quot;) \cdot log_2e}{log_2(\frac{1}{T&quot;}) \cdot log_2(1 - \frac{1}{T&quot;})} $$ (21)</p>
@@ -752,10 +754,10 @@ $$ P = \frac{n_a - n}{n_t - n} $$ (1)</p>
 <p>S 被标准化以消除给定消息集的大小 n 和允许的错误分数 P 的影响。将关系 (22) 代入等式 (15) 和 (21) 得到</p>
 <p>$$ S&rsquo; = (-log_2P&rsquo; + 1 + log_2(\frac{T&rsquo; + 2}{T&rsquo; - 1})) \cdot \frac{T&rsquo; + 2}{T&rsquo; - 1} $$ (23)</p>
 <p>$$ S&quot; = \frac{log_2e}{log_2(\frac{1}{T&quot;}) \cdot log_2(1 - \frac{1}{T&quot;})} $$ (24)</p>
-<p>我们注意到 $S&rsquo; &gt; \frac{T&rsquo; + 2}{T&rsquo; - 1}$，并且</p>
+<p>我们注意到 $S$&rsquo; &gt; \frac{T&rsquo; + 2}{T&rsquo; - 1}$$，并且</p>
 <p>$$ \lim_{\Phi&rsquo; \to 0} S&rsquo; = \frac{T&rsquo; + 2}{T&rsquo; - 1} $$ (25)</p>
 <p>可以通过检查图 1 直接看到方法 2 比方法 1 的优越性，图 1 是等式 (24) 的 S 与 T 曲线和下限极限方程 (25) 的图形。图 1 中的曲线说明了两种方法的空间/时间权衡，假设预期错误分数 P 和消息数量 n 的值固定。</p>
-<p>对于方法 2，T&quot; 的增加对应于 Φ&quot; 的减少，Φ&quot; 是所有 n 条消息都被哈希编码后哈希字段中 0 位的分数。为了保持 P 的固定值，Φ&quot; 的这种减少对应于每个消息的测试位数 d 的增加，以及对哈希区域大小 N&quot; 的适当调整。S&quot; 与哈希区域大小 N&quot; 成正比，如等式 (22) 所示。随着 T&quot; 的增加，相应地，Φ&quot; 减少，S 和 N&quot; 减少，直到达到收益递减点。这个收益递减点在图 1 中说明，其中 S&quot; 在 $\frac{1}{T&quot;} = 1 - \frac{1}{T&quot;}$ 时最小，即在 T&quot; = 2 时。</p>
+<p>对于方法 2，T&quot; 的增加对应于 Φ&quot; 的减少，Φ&quot; 是所有 n 条消息都被哈希编码后哈希字段中 0 位的分数。为了保持 P 的固定值，Φ&quot; 的这种减少对应于每个消息的测试位数 d 的增加，以及对哈希区域大小 N&quot; 的适当调整。S&quot; 与哈希区域大小 N&quot; 成正比，如等式 (22) 所示。随着 T&quot; 的增加，相应地，Φ&quot; 减少，S 和 N&quot; 减少，直到达到收益递减点。这个收益递减点在图 1 中说明，其中 S&quot; 在 $$\frac{1}{T&quot;} = 1 - \frac{1}{T&quot;}$$ 时最小，即在 T&quot; = 2 时。</p>
 <p>
 
 
@@ -785,7 +787,7 @@ $$ P = \frac{n_a - n}{n_t - n} $$ (1)</p>
   
 
 </p>
-<p>由于 $\Phi&quot; = \frac{1}{T&quot;}$，这意味着可以使用方法 2 的最小哈希区域发生在一半位为 1 而另一半位为 0 时。对应于 T&quot; = 2 的 S&quot; 值为 $S&quot; = log_2e = 1.47$。</p>
+<p>由于 $$\Phi&quot; = \frac{1}{T&quot;}$$，这意味着可以使用方法 2 的最小哈希区域发生在一半位为 1 而另一半位为 0 时。对应于 T&quot; = 2 的 S&quot; 值为 $$S&quot; = log_2e = 1.47$$。</p>
 
 
 <h2 class="relative group">连字符示例应用程序的分析 
