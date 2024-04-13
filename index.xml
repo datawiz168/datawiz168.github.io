@@ -2,48 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My awesome website</title>
-    <link>https://grokdb.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on My awesome website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 GrokDb</copyright>
-    <lastBuildDate>Sat, 13 Apr 2024 18:55:10 +0800</lastBuildDate><atom:link href="https://grokdb.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Apr 2024 00:33:08 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MongoDB副本集:构建高可用的数据库集群</title>
+      <link>http://localhost:1313/post/fifth-post/</link>
+      <pubDate>Sun, 14 Apr 2024 00:33:08 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/fifth-post/</guid>
+      <description>在当今的应用程序开发中,数据库的高可用性和可扩展性变得越来越重要。MongoDB作为一个流行的NoSQL数据库,提供了一种称为副本集(Replica Set)的机制来满足这些需求。本文将探讨MongoDB副本集的概念、工作原理以及如何设置和管理副本集。</description>
+      
+    </item>
+    
     <item>
       <title>一文读懂Redis Cluster</title>
-      <link>https://grokdb.io/post/fourth-post/</link>
+      <link>http://localhost:1313/post/fourth-post/</link>
       <pubDate>Sat, 13 Apr 2024 18:55:10 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/fourth-post/</guid>
+      <guid>http://localhost:1313/post/fourth-post/</guid>
       <description>引言 # Redis Cluster是Redis的分布式解决方案,通过分片(sharding)机制,将数据分布到多个节点,从而实现高可用、可扩展的Redis服务。本文将深入探讨Redis Cluster的关键特性、内部机制以及部署方式,帮助读者全面理解这一重要的分布式方案。</description>
       
     </item>
     
     <item>
       <title>分布式数据库的CAP定理</title>
-      <link>https://grokdb.io/post/third-post/</link>
+      <link>http://localhost:1313/post/third-post/</link>
       <pubDate>Mon, 08 Apr 2024 03:04:14 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/third-post/</guid>
+      <guid>http://localhost:1313/post/third-post/</guid>
       <description>在大数据时代,分布式数据库系统扮演着越来越重要的角色。然而,设计和实现一个高效、可靠的分布式数据库并非易事。其中,CAP定理就为我们提供了一个重要的理论指导。</description>
       
     </item>
     
     <item>
       <title>允许误差的哈希编码中的空间/时间权衡(翻译)</title>
-      <link>https://grokdb.io/post/second-post/</link>
+      <link>http://localhost:1313/post/second-post/</link>
       <pubDate>Sun, 07 Apr 2024 02:17:12 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/second-post/</guid>
+      <guid>http://localhost:1313/post/second-post/</guid>
       <description>ACM Digital Library Paper</description>
       
     </item>
     
     <item>
       <title>MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB</title>
-      <link>https://grokdb.io/post/first-post/</link>
+      <link>http://localhost:1313/post/first-post/</link>
       <pubDate>Mon, 01 Apr 2024 21:36:44 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/first-post/</guid>
+      <guid>http://localhost:1313/post/first-post/</guid>
       <description>MySQL源码编译和调试指南 此指南提供一系列详细的步骤，帮助您从源码编译MySQL服务器，并使用GDB对其进行调试。整个过程包括环境准备、源码获取、编译、调试前的准备、使用GDB调试，以及一些调试技巧和建议。</description>
       
     </item>
