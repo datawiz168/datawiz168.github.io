@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较 &middot; My awesome website</title>
-  <meta name="title" content="SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较 &middot; My awesome website" />
+  <title>MongoDB分片：提升大规模数据库性能的关键 &middot; My awesome website</title>
+  <meta name="title" content="MongoDB分片：提升大规模数据库性能的关键 &middot; My awesome website" />
   
   
   
   
   
-  <link rel="canonical" href="https://grokdb.io/post/sixth-post/" />
+  <link rel="canonical" href="https://grokdb.io/post/seventh-post/" />
   
   
   
@@ -60,15 +60,15 @@
   
   
   
-  <meta property="og:title" content="SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较" />
-<meta property="og:description" content="在当今的企业环境中,关键业务应用程序的持续可用性和数据完整性至关重要。微软的 SQL Server 和 Oracle 数据库都提供了高可用性解决方案,以确保在发生故障或灾难时,数据库能够继续提供服务。本文将重点介绍 SQL Server Always On 的两个主要功能:Always On 故障转移集群实例 (FCI) 和 Always On 可用性组 (AG),并将它们与 Oracle 数据库中的类似概念进行比较。" />
+  <meta property="og:title" content="MongoDB分片：提升大规模数据库性能的关键" />
+<meta property="og:description" content="MongoDB是一个强大的分布式文档型数据库,为了应对大规模数据的存储和处理,MongoDB提供了分片(Sharding)功能。本文将详细介绍MongoDB分片的概念、原理和应用。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://grokdb.io/post/sixth-post/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2024-04-14T01:56:22+08:00" />
-<meta property="article:modified_time" content="2024-04-14T01:56:22+08:00" />
+<meta property="og:url" content="https://grokdb.io/post/seventh-post/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-14T15:52:32+08:00" />
+<meta property="article:modified_time" content="2024-04-14T15:52:32+08:00" />
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较"/>
-<meta name="twitter:description" content="在当今的企业环境中,关键业务应用程序的持续可用性和数据完整性至关重要。微软的 SQL Server 和 Oracle 数据库都提供了高可用性解决方案,以确保在发生故障或灾难时,数据库能够继续提供服务。本文将重点介绍 SQL Server Always On 的两个主要功能:Always On 故障转移集群实例 (FCI) 和 Always On 可用性组 (AG),并将它们与 Oracle 数据库中的类似概念进行比较。"/>
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="MongoDB分片：提升大规模数据库性能的关键"/>
+<meta name="twitter:description" content="MongoDB是一个强大的分布式文档型数据库,为了应对大规模数据的存储和处理,MongoDB提供了分片(Sharding)功能。本文将详细介绍MongoDB分片的概念、原理和应用。"/>
 
   
   <script type="application/ld+json">
@@ -76,26 +76,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较",
-    "headline": "SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较",
+    "name": "MongoDB分片：提升大规模数据库性能的关键",
+    "headline": "MongoDB分片：提升大规模数据库性能的关键",
     
-    "abstract": "在当今的企业环境中,关键业务应用程序的持续可用性和数据完整性至关重要。微软的 SQL Server 和 Oracle 数据库都提供了高可用性解决方案,以确保在发生故障或灾难时,数据库能够继续提供服务。本文将重点介绍 SQL Server Always On 的两个主要功能:Always On 故障转移集群实例 (FCI) 和 Always On 可用性组 (AG),并将它们与 Oracle 数据库中的类似概念进行比较。",
+    "abstract": "MongoDB是一个强大的分布式文档型数据库,为了应对大规模数据的存储和处理,MongoDB提供了分片(Sharding)功能。本文将详细介绍MongoDB分片的概念、原理和应用。",
     "inLanguage": "en",
-    "url" : "https:\/\/grokdb.io\/post\/sixth-post\/",
+    "url" : "https:\/\/grokdb.io\/post\/seventh-post\/",
     "author" : {
       "@type": "Person",
       "name": "GrokDb"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-04-14T01:56:22\u002b08:00",
-    "datePublished": "2024-04-14T01:56:22\u002b08:00",
+    "dateCreated": "2024-04-14T15:52:32\u002b08:00",
+    "datePublished": "2024-04-14T15:52:32\u002b08:00",
     
-    "dateModified": "2024-04-14T01:56:22\u002b08:00",
+    "dateModified": "2024-04-14T15:52:32\u002b08:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "248"
+    "wordCount": "65"
   }]
   </script>
 
@@ -287,7 +287,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较
+      MongoDB分片：提升大规模数据库性能的关键
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -332,7 +332,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-04-14 01:56:22 &#43;0800 CST">14 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>248 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+  <time datetime="2024-04-14 15:52:32 &#43;0800 CST">14 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>65 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
   
 
   
@@ -413,11 +413,11 @@
         class="my-0 rounded-md"
         loading="lazy"
         srcset="
-        /post/sixth-post/image6_hubc00d1f6d43dbd77a9180eacb8fa8510_650770_330x0_resize_q75_box.jpg 330w,
-        /post/sixth-post/image6_hubc00d1f6d43dbd77a9180eacb8fa8510_650770_660x0_resize_q75_box.jpg 660w,
-        /post/sixth-post/image6_hubc00d1f6d43dbd77a9180eacb8fa8510_650770_1024x0_resize_q75_box.jpg 1024w,
-        /post/sixth-post/image6_hubc00d1f6d43dbd77a9180eacb8fa8510_650770_1320x0_resize_q75_box.jpg 2x"
-        src="/post/sixth-post/image6_hubc00d1f6d43dbd77a9180eacb8fa8510_650770_660x0_resize_q75_box.jpg"
+        /post/seventh-post/image7_hu5d5a60c7f0b90e0a248915b295f0f8dc_680862_330x0_resize_q75_box.jpg 330w,
+        /post/seventh-post/image7_hu5d5a60c7f0b90e0a248915b295f0f8dc_680862_660x0_resize_q75_box.jpg 660w,
+        /post/seventh-post/image7_hu5d5a60c7f0b90e0a248915b295f0f8dc_680862_1024x0_resize_q75_box.jpg 1024w,
+        /post/seventh-post/image7_hu5d5a60c7f0b90e0a248915b295f0f8dc_680862_1320x0_resize_q75_box.jpg 2x"
+        src="/post/seventh-post/image7_hu5d5a60c7f0b90e0a248915b295f0f8dc_680862_660x0_resize_q75_box.jpg"
         alt="插图"
       />
       
@@ -426,132 +426,162 @@
   
 
 
-在当今的企业环境中,关键业务应用程序的持续可用性和数据完整性至关重要。微软的 SQL Server 和 Oracle 数据库都提供了高可用性解决方案,以确保在发生故障或灾难时,数据库能够继续提供服务。本文将重点介绍 SQL Server Always On 的两个主要功能:Always On 故障转移集群实例 (FCI) 和 Always On 可用性组 (AG),并将它们与 Oracle 数据库中的类似概念进行比较。</p>
+MongoDB是一个强大的分布式文档型数据库,为了应对大规模数据的存储和处理,MongoDB提供了分片(Sharding)功能。本文将详细介绍MongoDB分片的概念、原理和应用。</p>
 
 
-<h2 class="relative group">Always On 故障转移集群实例 (FCI) 
-    <div id="always-on-%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB%E9%9B%86%E7%BE%A4%E5%AE%9E%E4%BE%8B-fci" class="anchor"></div>
+<h2 class="relative group">什么是分片？ 
+    <div id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E7%89%87" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#always-on-%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB%E9%9B%86%E7%BE%A4%E5%AE%9E%E4%BE%8B-fci" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E7%89%87" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>根据 SQL Server 官方文档,Always On 故障转移集群实例 (FCI) 是一种将 SQL Server 与 Windows Server 故障转移集群 (WSFC) 相结合的实例级高可用性和灾难恢复解决方案。FCI 利用 WSFC 的功能,将 SQL Server 实例作为集群中的资源进行管理,并在节点故障时自动将工作负载转移到另一个节点,从而最大限度地减少停机时间。</p>
-<p>以下是 FCI 的一些关键特性:</p>
-<ul>
-<li>实例级保护:FCI 提供 SQL Server 实例级别的冗余,包括系统数据库和用户数据库。</li>
-<li>自动故障转移:当节点发生故障时,FCI 可以自动将 SQL Server 实例转移到另一个节点,确保服务的连续性。</li>
-<li>共享存储:FCI 使用共享存储(如 SAN 或 SMB 文件共享)来存储数据库文件,以便在故障转移期间所有节点都可以访问数据。</li>
-<li>灵活的部署选项:FCI 可以部署在单个数据中心内,也可以跨多个数据中心部署,以提供更高级别的灾难恢复能力。</li>
-</ul>
+<p>分片是一种将大型数据集分散存储到多个数据库服务器上的方法。通过将数据分散到多个节点,可以提高数据库的性能、可扩展性和可用性。MongoDB的分片功能允许你将一个大型集合分割成多个更小的子集合,并将它们分布在不同的分片上。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 
 
-<h3 class="relative group">与 Oracle Real Application Clusters (RAC) 的比较 
-    <div id="%E4%B8%8E-oracle-real-application-clusters-rac-%E7%9A%84%E6%AF%94%E8%BE%83" class="anchor"></div>
+<h2 class="relative group">分片的优势 
+    <div id="%E5%88%86%E7%89%87%E7%9A%84%E4%BC%98%E5%8A%BF" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%8E-oracle-real-application-clusters-rac-%E7%9A%84%E6%AF%94%E8%BE%83" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Oracle Real Application Clusters (RAC) 是 Oracle 数据库的一项关键功能,与 SQL Server FCI 类似,旨在通过将数据库实例分布在多个节点上来提供高可用性和可扩展性。RAC 使用共享存储,并在节点故障时自动将工作负载重新分配给其他节点,以最大限度地减少停机时间。</p>
-<p>RAC 与 FCI 的主要区别在于:</p>
-<ul>
-<li>负载平衡:除了提供高可用性外,RAC 还支持负载平衡,允许多个节点同时处理工作负载,从而提高性能和可扩展性。</li>
-<li>可扩展性:RAC 支持动态添加或删除节点,以适应不断变化的工作负载需求。</li>
-<li>灵活的部署选项:RAC 可以部署在各种硬件和操作系统平台上,包括 Unix、Linux 和 Windows。</li>
-</ul>
-
-
-<h2 class="relative group">Always On 可用性组 (AG) 
-    <div id="always-on-%E5%8F%AF%E7%94%A8%E6%80%A7%E7%BB%84-ag" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#always-on-%E5%8F%AF%E7%94%A8%E6%80%A7%E7%BB%84-ag" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%88%86%E7%89%87%E7%9A%84%E4%BC%98%E5%8A%BF" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>根据 SQL Server 官方文档,Always On 可用性组 (AG) 是 SQL Server 的一项企业级高可用性和灾难恢复解决方案,在 SQL Server 实例级别提供数据库级别的保护。AG 使用一组称为可用性副本的独立 SQL Server 实例,通过将数据从主副本复制到一个或多个辅助副本来提供数据冗余。</p>
-<p>以下是 AG 的一些关键特性:</p>
 <ul>
-<li>数据库级保护:AG 提供数据库级别的冗余和高可用性,确保关键数据库的持续可用性。</li>
-<li>灵活的复制选项:AG 支持同步和异步复制模式,以满足不同的数据一致性和性能要求。</li>
-<li>读写分离:辅助副本可以配置为只读,以卸载主副本的读取工作负载,提高性能和可扩展性。</li>
-<li>多种故障转移选项:AG 支持自动故障转移和手动故障转移,以及计划内和计划外的故障转移场景。</li>
+<li><strong>高性能</strong>：通过将数据分散到多个节点,可以利用多台服务器的资源来提高读写性能。</li>
+<li><strong>可扩展性</strong>：当数据量不断增长时,可以通过添加更多的分片来横向扩展数据库。</li>
+<li><strong>高可用性</strong>：分片可以与副本集结合使用,提供数据的冗余和故障转移能力。</li>
 </ul>
 
 
-<h3 class="relative group">与 Oracle Data Guard 的比较 
-    <div id="%E4%B8%8E-oracle-data-guard-%E7%9A%84%E6%AF%94%E8%BE%83" class="anchor"></div>
+<h2 class="relative group">分片的架构 
+    <div id="%E5%88%86%E7%89%87%E7%9A%84%E6%9E%B6%E6%9E%84" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E4%B8%8E-oracle-data-guard-%E7%9A%84%E6%AF%94%E8%BE%83" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Oracle Data Guard 是 Oracle 数据库的一项关键功能,与 SQL Server AG 类似,旨在通过将数据复制到一个或多个备用数据库来提供数据库级别的保护和灾难恢复能力。Data Guard 使用主从架构,支持各种数据保护和复制选项。</p>
-<p>Data Guard 与 AG 的主要区别在于:</p>
-<ul>
-<li>广泛的数据保护选项:Data Guard 提供了多种数据保护模式,包括最大性能、最大可用性和最大保护,以满足不同的业务需求。</li>
-<li>灵活的部署选项:Data Guard 可以在各种硬件和操作系统平台上部署,包括 Unix、Linux 和 Windows。</li>
-<li>高级功能:Data Guard 提供了一些高级功能,如主动数据保护、快速故障切换和实时查询等,这些功能在 AG 中可能以不同的方式实现或不可用。</li>
-</ul>
-
-
-<h2 class="relative group">部署和管理考虑事项 
-    <div id="%E9%83%A8%E7%BD%B2%E5%92%8C%E7%AE%A1%E7%90%86%E8%80%83%E8%99%91%E4%BA%8B%E9%A1%B9" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E9%83%A8%E7%BD%B2%E5%92%8C%E7%AE%A1%E7%90%86%E8%80%83%E8%99%91%E4%BA%8B%E9%A1%B9" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%88%86%E7%89%87%E7%9A%84%E6%9E%B6%E6%9E%84" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>在部署和管理 SQL Server Always On 或 Oracle 高可用性解决方案时,需要考虑以下几个关键因素:</p>
+<p>MongoDB分片集群由以下几个关键组件组成：<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <ul>
-<li>硬件和网络要求:确保硬件和网络基础设施满足高可用性解决方案的要求,如共享存储、冗余网络组件等。</li>
-<li>故障转移策略:根据业务需求和 SLA,制定合适的故障转移策略,包括自动故障转移、手动故障转移和故障转移优先级等。</li>
-<li>数据一致性和复制延迟:选择适当的复制模式(同步或异步),并监控复制延迟,以确保数据的一致性和可用性。</li>
-<li>备份和恢复策略:制定全面的备份和恢复策略,定期测试备份和恢复过程,以确保在发生故障或灾难时能够及时恢复数据。</li>
-<li>监控和警报:实施全面的监控和警报机制,及时检测和解决潜在的问题,确保高可用性解决方案的正常运行。</li>
+<li><strong>分片(Shard)</strong>：每个分片都包含了分片数据的一个子集。每个分片都必须部署为一个副本集。</li>
+<li><strong>mongos</strong>：<code>mongos</code>充当查询路由器,在客户端应用程序和分片集群之间提供接口。<code>mongos</code>可以支持hedged reads以最小化延迟。</li>
+<li><strong>配置服务器(Config Servers)</strong>：配置服务器存储集群的元数据和配置设置。从MongoDB 3.4开始,配置服务器必须部署为一个副本集(CSRS)。
+
+
+
+
+
+  
+  
+  
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" alt="插图" />
+      
+    </figure>
+  
+
+</li>
 </ul>
 
 
-<h2 class="relative group">结论 
-    <div id="%E7%BB%93%E8%AE%BA" class="anchor"></div>
+<h2 class="relative group">如何设置分片？ 
+    <div id="%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%88%86%E7%89%87" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E7%BB%93%E8%AE%BA" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%88%86%E7%89%87" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>SQL Server Always On 和 Oracle 数据库都提供了强大的高可用性解决方案,通过复制和故障转移实现数据库的冗余和高可用性。Always On 故障转移集群实例 (FCI) 类似于 Oracle Real Application Clusters (RAC),提供实例级的保护和自动故障转移;而 Always On 可用性组 (AG) 类似于 Oracle Data Guard,提供数据库级的保护和灵活的复制选项。</p>
-<p>在选择和实施高可用性解决方案时,需要全面评估业务需求、技术环境和预算等因素,并参考相应产品的官方文档。通过合理的规划、配置和管理,SQL Server Always On 和 Oracle 高可用性架构都能够显著提高关键业务应用程序的可用性和数据保护级别,最大限度地减少停机时间和数据丢失的风险。</p>
-<p>参考文档:</p>
+<p>要设置MongoDB分片,需要执行以下步骤：<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<ol>
+<li>启动配置服务器副本集。</li>
+<li>启动各个分片副本集。</li>
+<li>启动<code>mongos</code>路由进程,连接到配置服务器。</li>
+<li>在<code>mongos</code>中添加分片到集群。</li>
+<li>为数据库和集合启用分片。</li>
+<li>为集合选择分片键。</li>
+</ol>
+
+
+<h2 class="relative group">分片键的选择 
+    <div id="%E5%88%86%E7%89%87%E9%94%AE%E7%9A%84%E9%80%89%E6%8B%A9" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%88%86%E7%89%87%E9%94%AE%E7%9A%84%E9%80%89%E6%8B%A9" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>选择合适的分片键对于分片集群的性能和可扩展性至关重要。一个好的分片键应该具有以下特点：<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
 <ul>
-<li><a href="https://docs.microsoft.com/zh-cn/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server"   target="_blank">
-    SQL Server Always On 故障转移集群实例 (FCI)</a></li>
-<li><a href="https://docs.microsoft.com/zh-cn/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server"   target="_blank">
-    SQL Server Always On 可用性组 (AG)</a></li>
-<li><a href="https://docs.microsoft.com/zh-cn/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server"   target="_blank">
-    SQL Server Always On 可用性组概述</a></li>
-<li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/racad/introduction-to-oracle-rac.html"   target="_blank">
-    Oracle Real Application Clusters (RAC)</a></li>
-<li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/sbydb/preface.html"   target="_blank">
-    Oracle Data Guard</a></li>
+<li><strong>高基数</strong>：分片键应该有足够多的不同值,以确保数据在各个分片之间均匀分布。</li>
+<li><strong>低频率</strong>：分片键的值不应该频繁变化,以避免大量的数据迁移。</li>
+<li><strong>查询友好</strong>：分片键应该与常见的查询模式相匹配,以便在分片上进行有效的查询路由。</li>
 </ul>
+<p>常见的分片键选择方式包括：</p>
+<ul>
+<li><strong>基于范围的分片键</strong>：适用于具有自然顺序的数据,如时间戳或序列号。</li>
+<li><strong>基于哈希的分片键</strong>：对分片键的值进行哈希,以实现更均匀的数据分布。</li>
+<li><strong>复合分片键</strong>：由多个字段组成的分片键,可以结合范围和哈希的优点。</li>
+</ul>
+
+
+<h2 class="relative group">分片与副本集的结合 
+    <div id="%E5%88%86%E7%89%87%E4%B8%8E%E5%89%AF%E6%9C%AC%E9%9B%86%E7%9A%84%E7%BB%93%E5%90%88" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%88%86%E7%89%87%E4%B8%8E%E5%89%AF%E6%9C%AC%E9%9B%86%E7%9A%84%E7%BB%93%E5%90%88" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>为了提高分片集群的可用性和数据冗余性,通常将分片与副本集结合使用。每个分片都部署为一个副本集,确保分片内的数据在节点故障时能够自动恢复。副本集的主节点处理写操作,从节点处理读操作,提供了读写分离的能力。<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>在分片副本集架构中,<code>mongos</code>路由器与各个分片的主节点通信,协调整个集群的操作。当主节点发生故障时,副本集会自动选举新的主节点,确保分片的可用性。</p>
+
+
+<h2 class="relative group">总结 
+    <div id="%E6%80%BB%E7%BB%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%80%BB%E7%BB%93" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>MongoDB的分片功能是应对大规模数据存储和处理的有效方案。通过将数据分散到多个分片上,可以提高数据库的性能、可扩展性和可用性。合理选择分片键,并将分片与副本集结合使用,可以构建一个高效、可靠的MongoDB分布式数据库系统。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>MongoDB官方文档 - Sharding：https://docs.mongodb.com/manual/sharding/&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>MongoDB官方文档 - Sharded Cluster Components：https://docs.mongodb.com/manual/core/sharded-cluster-components/&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>MongoDB官方文档 - Deploy a Sharded Cluster：https://docs.mongodb.com/manual/tutorial/deploy-shard-cluster/&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>MongoDB官方文档 - Shard Keys：https://docs.mongodb.com/manual/core/sharding-shard-key/&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>MongoDB官方文档 - Replication：https://docs.mongodb.com/manual/replication/&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
         </div>
                 
@@ -569,8 +599,8 @@
           
         
       <script>
-        var oid = "views_post\/sixth-post\/index.md"
-        var oid_likes = "likes_post\/sixth-post\/index.md"
+        var oid = "views_post\/seventh-post\/index.md"
+        var oid_likes = "likes_post\/seventh-post\/index.md"
       </script>
       
       
@@ -590,7 +620,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/post/fifth-post/">
+            <a class="flex group mr-3" href="/post/sixth-post/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -602,11 +632,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >MongoDB副本集:构建高可用的数据库集群</span
+                  >SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-04-14 00:33:08 &#43;0800 CST">14 April 2024</time>
+                    <time datetime="2024-04-14 01:56:22 &#43;0800 CST">14 April 2024</time>
                   
                 </span>
               </span>
@@ -614,28 +644,6 @@
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/post/seventh-post/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >MongoDB分片：提升大规模数据库性能的关键</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-04-14 15:52:32 &#43;0800 CST">14 April 2024</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
