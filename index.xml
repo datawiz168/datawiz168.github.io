@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 GrokDb</copyright>
-    <lastBuildDate>Tue, 13 Aug 2024 23:56:51 +0800</lastBuildDate><atom:link href="https://grokdb.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Aug 2024 00:27:03 +0800</lastBuildDate><atom:link href="https://grokdb.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>深入MySQL源码：自定义复制线程名称</title>
+      <link>https://grokdb.io/post/ninth-post/</link>
+      <pubDate>Mon, 26 Aug 2024 00:27:03 +0800</pubDate>
+      
+      <guid>https://grokdb.io/post/ninth-post/</guid>
+      <description>引言 # MySQL的复制功能是保持多个数据库服务器之间数据一致性的关键特性。对于数据库管理员和开发人员来说，了解这个过程中涉及的线程非常重要。在这篇博文中，我们将探讨如何通过修改MySQL的源代码来自定义这些线程的名称。</description>
+      
+    </item>
+    
     <item>
       <title>深入探索 MySQL COUNT() 函数：源码修改实验详解</title>
       <link>https://grokdb.io/post/eighth-post/</link>
