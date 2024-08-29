@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 GrokDb</copyright>
-    <lastBuildDate>Mon, 26 Aug 2024 00:27:03 +0800</lastBuildDate><atom:link href="https://grokdb.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Aug 2024 20:38:35 +0800</lastBuildDate><atom:link href="https://grokdb.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PostgreSQL 16.4 编译、运行和调试指南 (Ubuntu 22.04.4 LTS)</title>
+      <link>https://grokdb.io/post/tenth-post/</link>
+      <pubDate>Thu, 29 Aug 2024 20:38:35 +0800</pubDate>
+      
+      <guid>https://grokdb.io/post/tenth-post/</guid>
+      <description>1.</description>
+      
+    </item>
+    
     <item>
       <title>深入MySQL源码：自定义复制线程名称</title>
       <link>https://grokdb.io/post/ninth-post/</link>
