@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 GrokDb</copyright>
-    <lastBuildDate>Thu, 29 Aug 2024 20:38:35 +0800</lastBuildDate><atom:link href="https://grokdb.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Sep 2024 01:50:36 +0800</lastBuildDate><atom:link href="https://grokdb.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>给执行计划点颜色瞧瞧 —— PostgreSQL EXPLAIN 输出颜色修改源码实验总结</title>
+      <link>https://grokdb.io/post/eleventh-post/</link>
+      <pubDate>Sun, 01 Sep 2024 01:50:36 +0800</pubDate>
+      
+      <guid>https://grokdb.io/post/eleventh-post/</guid>
+      <description>给执行计划点颜色瞧瞧 —— PostgreSQL EXPLAIN 输出颜色修改源码实验总结 # 实验目标 # 本实验旨在通过修改 PostgreSQL 的源代码，改变 EXPLAIN 命令输出的显示效果，具体目标是将 &amp;ldquo;QUERY PLAN&amp;rdquo; 标题显示为蓝色。</description>
+      
+    </item>
+    
     <item>
       <title>PostgreSQL 16.4 编译、运行和调试指南 (Ubuntu 22.04.4 LTS)</title>
       <link>https://grokdb.io/post/tenth-post/</link>
