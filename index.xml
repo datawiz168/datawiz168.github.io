@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 GrokDb</copyright>
-    <lastBuildDate>Sun, 01 Sep 2024 01:50:36 +0800</lastBuildDate><atom:link href="https://grokdb.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Sep 2024 01:49:46 +0800</lastBuildDate><atom:link href="https://grokdb.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>深入 PostgreSQL 源码：为执行计划添加缓存命中率显示</title>
+      <link>https://grokdb.io/post/twelfth-post/</link>
+      <pubDate>Tue, 03 Sep 2024 01:49:46 +0800</pubDate>
+      
+      <guid>https://grokdb.io/post/twelfth-post/</guid>
+      <description>简介 # 在数据库性能调优过程中，执行计划是了解查询如何执行的重要工具。为了更好地理解查询的性能表现，我们可以通过修改 PostgreSQL 的源码，为执行计划添加缓存命中率的显示。这将有助于深入分析查询性能，尤其是在使用 Memoize 节点时。</description>
+      
+    </item>
+    
     <item>
       <title>给执行计划点颜色瞧瞧 —— PostgreSQL EXPLAIN 输出颜色修改源码实验总结</title>
       <link>https://grokdb.io/post/eleventh-post/</link>
