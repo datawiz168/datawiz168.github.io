@@ -2,128 +2,128 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My awesome website</title>
-    <link>https://grokdb.io/post/</link>
+    <link>https://datawiz168.github.io/post/</link>
     <description>Recent content in Posts on My awesome website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 GrokDb</copyright>
-    <lastBuildDate>Tue, 03 Sep 2024 01:49:46 +0800</lastBuildDate><atom:link href="https://grokdb.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Sep 2024 01:49:46 +0800</lastBuildDate><atom:link href="https://datawiz168.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>深入 PostgreSQL 源码：为执行计划添加缓存命中率显示</title>
-      <link>https://grokdb.io/post/twelfth-post/</link>
+      <link>https://datawiz168.github.io/post/twelfth-post/</link>
       <pubDate>Tue, 03 Sep 2024 01:49:46 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/twelfth-post/</guid>
+      <guid>https://datawiz168.github.io/post/twelfth-post/</guid>
       <description>简介 # 在数据库性能调优过程中，执行计划是了解查询如何执行的重要工具。为了更好地理解查询的性能表现，我们可以通过修改 PostgreSQL 的源码，为执行计划添加缓存命中率的显示。这将有助于深入分析查询性能，尤其是在使用 Memoize 节点时。</description>
       
     </item>
     
     <item>
       <title>给执行计划点颜色瞧瞧 —— PostgreSQL EXPLAIN 输出颜色修改源码实验总结</title>
-      <link>https://grokdb.io/post/eleventh-post/</link>
+      <link>https://datawiz168.github.io/post/eleventh-post/</link>
       <pubDate>Sun, 01 Sep 2024 01:50:36 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/eleventh-post/</guid>
+      <guid>https://datawiz168.github.io/post/eleventh-post/</guid>
       <description>给执行计划点颜色瞧瞧 —— PostgreSQL EXPLAIN 输出颜色修改源码实验总结 # 实验目标 # 本实验旨在通过修改 PostgreSQL 的源代码，改变 EXPLAIN 命令输出的显示效果，具体目标是将 &amp;ldquo;QUERY PLAN&amp;rdquo; 标题显示为蓝色。</description>
       
     </item>
     
     <item>
       <title>PostgreSQL 16.4 编译、运行和调试指南 (Ubuntu 22.04.4 LTS)</title>
-      <link>https://grokdb.io/post/tenth-post/</link>
+      <link>https://datawiz168.github.io/post/tenth-post/</link>
       <pubDate>Thu, 29 Aug 2024 20:38:35 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/tenth-post/</guid>
+      <guid>https://datawiz168.github.io/post/tenth-post/</guid>
       <description>1.</description>
       
     </item>
     
     <item>
       <title>深入MySQL源码：自定义复制线程名称</title>
-      <link>https://grokdb.io/post/ninth-post/</link>
+      <link>https://datawiz168.github.io/post/ninth-post/</link>
       <pubDate>Mon, 26 Aug 2024 00:27:03 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/ninth-post/</guid>
+      <guid>https://datawiz168.github.io/post/ninth-post/</guid>
       <description>引言 # MySQL的复制功能是保持多个数据库服务器之间数据一致性的关键特性。对于数据库管理员和开发人员来说，了解这个过程中涉及的线程非常重要。在这篇博文中，我们将探讨如何通过修改MySQL的源代码来自定义这些线程的名称。</description>
       
     </item>
     
     <item>
       <title>深入探索 MySQL COUNT() 函数：源码修改实验详解</title>
-      <link>https://grokdb.io/post/eighth-post/</link>
+      <link>https://datawiz168.github.io/post/eighth-post/</link>
       <pubDate>Tue, 13 Aug 2024 23:56:51 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/eighth-post/</guid>
+      <guid>https://datawiz168.github.io/post/eighth-post/</guid>
       <description>1.</description>
       
     </item>
     
     <item>
       <title>MongoDB分片：提升大规模数据库性能的关键</title>
-      <link>https://grokdb.io/post/seventh-post/</link>
+      <link>https://datawiz168.github.io/post/seventh-post/</link>
       <pubDate>Sun, 14 Apr 2024 15:52:32 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/seventh-post/</guid>
+      <guid>https://datawiz168.github.io/post/seventh-post/</guid>
       <description>MongoDB是一个强大的分布式文档型数据库,为了应对大规模数据的存储和处理,MongoDB提供了分片(Sharding)功能。本文将详细介绍MongoDB分片的概念、原理和应用。</description>
       
     </item>
     
     <item>
       <title>SQL Server Always On 高可用性解决方案与 Oracle 高可用性架构的比较</title>
-      <link>https://grokdb.io/post/sixth-post/</link>
+      <link>https://datawiz168.github.io/post/sixth-post/</link>
       <pubDate>Sun, 14 Apr 2024 01:56:22 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/sixth-post/</guid>
+      <guid>https://datawiz168.github.io/post/sixth-post/</guid>
       <description>在当今的企业环境中,关键业务应用程序的持续可用性和数据完整性至关重要。微软的 SQL Server 和 Oracle 数据库都提供了高可用性解决方案,以确保在发生故障或灾难时,数据库能够继续提供服务。本文将重点介绍 SQL Server Always On 的两个主要功能:Always On 故障转移集群实例 (FCI) 和 Always On 可用性组 (AG),并将它们与 Oracle 数据库中的类似概念进行比较。</description>
       
     </item>
     
     <item>
       <title>MongoDB副本集:构建高可用的数据库集群</title>
-      <link>https://grokdb.io/post/fifth-post/</link>
+      <link>https://datawiz168.github.io/post/fifth-post/</link>
       <pubDate>Sun, 14 Apr 2024 00:33:08 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/fifth-post/</guid>
+      <guid>https://datawiz168.github.io/post/fifth-post/</guid>
       <description>在当今的应用程序开发中,数据库的高可用性和可扩展性变得越来越重要。MongoDB作为一个流行的NoSQL数据库,提供了一种称为副本集(Replica Set)的机制来满足这些需求。本文将探讨MongoDB副本集的概念、工作原理以及如何设置和管理副本集。</description>
       
     </item>
     
     <item>
       <title>一文读懂Redis Cluster</title>
-      <link>https://grokdb.io/post/fourth-post/</link>
+      <link>https://datawiz168.github.io/post/fourth-post/</link>
       <pubDate>Sat, 13 Apr 2024 18:55:10 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/fourth-post/</guid>
+      <guid>https://datawiz168.github.io/post/fourth-post/</guid>
       <description>引言 # Redis Cluster是Redis的分布式解决方案,通过分片(sharding)机制,将数据分布到多个节点,从而实现高可用、可扩展的Redis服务。本文将深入探讨Redis Cluster的关键特性、内部机制以及部署方式,帮助读者全面理解这一重要的分布式方案。</description>
       
     </item>
     
     <item>
       <title>分布式数据库的CAP定理</title>
-      <link>https://grokdb.io/post/third-post/</link>
+      <link>https://datawiz168.github.io/post/third-post/</link>
       <pubDate>Mon, 08 Apr 2024 03:04:14 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/third-post/</guid>
+      <guid>https://datawiz168.github.io/post/third-post/</guid>
       <description>在大数据时代,分布式数据库系统扮演着越来越重要的角色。然而,设计和实现一个高效、可靠的分布式数据库并非易事。其中,CAP定理就为我们提供了一个重要的理论指导。</description>
       
     </item>
     
     <item>
       <title>允许误差的哈希编码中的空间/时间权衡(翻译)</title>
-      <link>https://grokdb.io/post/second-post/</link>
+      <link>https://datawiz168.github.io/post/second-post/</link>
       <pubDate>Sun, 07 Apr 2024 02:17:12 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/second-post/</guid>
+      <guid>https://datawiz168.github.io/post/second-post/</guid>
       <description>ACM Digital Library Paper</description>
       
     </item>
     
     <item>
       <title>MySQL源码编译和调试指南(Ubuntu 22.04.4 LTS) by GrokDB</title>
-      <link>https://grokdb.io/post/first-post/</link>
+      <link>https://datawiz168.github.io/post/first-post/</link>
       <pubDate>Mon, 01 Apr 2024 21:36:44 +0800</pubDate>
       
-      <guid>https://grokdb.io/post/first-post/</guid>
+      <guid>https://datawiz168.github.io/post/first-post/</guid>
       <description>MySQL源码编译和调试指南 此指南提供一系列详细的步骤，帮助您从源码编译MySQL服务器，并使用GDB对其进行调试。整个过程包括环境准备、源码获取、编译、调试前的准备、使用GDB调试，以及一些调试技巧和建议。</description>
       
     </item>
